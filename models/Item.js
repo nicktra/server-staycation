@@ -12,7 +12,7 @@ const itemSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    required: "Indonesia",
+    default: "Indonesia",
   },
   city: {
     type: String,
@@ -20,6 +20,7 @@ const itemSchema = new mongoose.Schema({
   },
   isPopular: {
     type: Boolean,
+    default: false,
   },
   description: {
     type: String,
