@@ -2,8 +2,8 @@ const Category = require("../models/Category");
 const Bank = require("../models/Bank");
 const Item = require("../models/Item");
 const Image = require("../models/Image");
-const fs = require('fs-extra');
-const path = require('path');
+const fs = require("fs-extra");
+const path = require("path");
 
 module.exports = {
   viewDashboard: (req, res) => {
@@ -159,6 +159,10 @@ module.exports = {
 
   viewItem: async (req, res) => {
     try {
+      const item = await Item.find()
+        .populate({ path: "imageId", select: "id imageURL" })
+        .populate({ path: "categoryId", select: "id name" });
+
       const category = await Category.find();
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -167,6 +171,7 @@ module.exports = {
         title: "Staycation | Item",
         alert,
         category,
+        item
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
@@ -185,14 +190,16 @@ module.exports = {
           title,
           description: about,
           price,
-          city
-        }
+          city,
+        };
         const item = await Item.create(newItem);
         category.itemId.push({ _id: item._id });
         await category.save();
         for (let i = 0; i < req.files.length; i++) {
-          const imageSave = await Image.create({ imageUrl : `images/${req.files[i].filename}` });
-          item.imageId.push({ _id: imageSave._id});
+          const imageSave = await Image.create({
+            imageUrl: `images/${req.files[i].filename}`,
+          });
+          item.imageId.push({ _id: imageSave._id });
           await item.save();
         }
       }
