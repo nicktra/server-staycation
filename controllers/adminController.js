@@ -589,6 +589,7 @@ module.exports = {
       res.render("admin/booking/view_booking", {
         title: "Staycation | Booking",
         user: req.session.user,
+        booking
       });
     } catch (error) {}
   },
