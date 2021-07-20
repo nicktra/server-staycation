@@ -19,21 +19,20 @@
                 </thead>
                 <tbody>
                     <% for(let i = 0; i < booking.length; i++) { %>
-                        <tr>
-                            <td><%= i + 1 %></td>
-                            <td><%= booking[i].bookingStartDate.toLocaleString().split(',')[0] %> s/d <%= booking[i].bookingEndDate.toLocaleString().split(',')[0] %></td>                            
-                            <td>
-                                <form action="/admin/booking/<%= booking[i].id %>?_method=DELETE" method="POST">
-                                    <a href="javascript:void()" type="button"
-                                        class="btn btn-warning btn-circle btn-sm button-update"
-                                        data-id="<%= booking[i].id %>" data-name="<%= booking[i].name %>" data-namebooking="<%= booking[i].namebooking %>" data-nomorRekening="<%= booking[i].nomorRekening %>"><i
-                                            class="fas fa-edit"></i></a>
-                                    <button type="submit" class="btn btn-danger btn-circle btn-sm" onclick="return confirm('Are you sure to delete this item?');"><i
-                                            class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% } %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= booking[i].bookingStartDate.toLocaleString().split(',')[0] %> s/d
+                            <%= booking[i].bookingEndDate.toLocaleString().split(',')[0] %></td>
+                        <td><%= booking[i].itemId.title %></td>
+                        <td><%= booking[i].memberId.firstName %> <%= booking[i].memberId.lastName %></td>
+                        <td><%= booking[i].bankId.nameBank %></td>
+                        <td><%= booking[i].payments.status %></td>
+                        <td>
+                            <a href="#" class="btn btn-warning btn-circle btn-sm button-update"><i
+                                    class="fas fa-eye"></i></a>
+                        </td>
+                    </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
