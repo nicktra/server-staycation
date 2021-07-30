@@ -1,4 +1,6 @@
 const Item = require("../models/Item");
+const Treasure = require("../models/Activity");
+const Traveler = require("../models/Booking");
 
 module.exports = {
   landingPage: async (req, res) => {
@@ -8,7 +10,20 @@ module.exports = {
         .limit(5)
         .populate({ path: 'imageId', select: '_id imageUrl' })
         
-      res.status(200).json({ mostPicked });
-    } catch (error) {}
+        const traveler = await Traveler.find();
+        const treasure = await Treasure.find();
+        const city = await Item.find();
+
+      res.status(200).json({ 
+          hero: {
+              travelers: traveler.length,
+              treasures: treasure.length,
+              cities: city.length,
+          },
+          mostPicked 
+        });
+    } catch (error) {
+
+    }
   },
 };
