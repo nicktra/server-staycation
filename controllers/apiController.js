@@ -18,7 +18,7 @@ module.exports = {
           path: "itemId",
           select: "_id title country city isPopular imageId",
           perDocumentLimit: 4,
-          option: { sort: { sumBooking: -1  }},
+          option: { sort: { sumBooking: -1 } },
           populate: {
             path: "imageId",
             select: "_id imageUrl",
@@ -53,7 +53,18 @@ module.exports = {
       });
     } catch (error) {
       console.log(error);
-      res.status(500).json({message: "Internal server error"});
+      res.status(500).json({ message: "Internal server error" });
     }
+  },
+
+  detailPage: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const item = await Item.findOne({ _id: id });
+
+      res.status(200).json({
+        item,
+      });
+    } catch (error) {}
   },
 };
