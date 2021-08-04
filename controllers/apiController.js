@@ -48,10 +48,11 @@ module.exports = {
         imageUrl: "images/testimonial2.jpg",
         name: "Happy Family",
         rate: 4.55,
-        content: "What a great trip with my family and I should try again next time soon ...",
+        content:
+          "What a great trip with my family and I should try again next time soon ...",
         familyName: "Angga",
-        familyOccupation: "Product Designer"
-      }
+        familyOccupation: "Product Designer",
+      };
 
       res.status(200).json({
         hero: {
@@ -61,7 +62,7 @@ module.exports = {
         },
         mostPicked,
         category,
-        testimonial
+        testimonial,
       });
     } catch (error) {
       console.log(error);
@@ -84,16 +85,56 @@ module.exports = {
         imageUrl: "images/testimonial1.jpg",
         name: "Happy Family",
         rate: 4.55,
-        content: "What a great trip with my family and I should try again next time soon ...",
+        content:
+          "What a great trip with my family and I should try again next time soon ...",
         familyName: "Angga",
-        familyOccupation: "Product Designer"
-      }
+        familyOccupation: "Product Designer",
+      };
 
       res.status(200).json({
         ...item._doc,
         bank,
-        testimonial
+        testimonial,
       });
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  bookingPage: async (req, res) => {
+    const {
+      idItem,
+      duration,
+      price,
+      bookingDateStart,
+      bookingDateEnd,
+      firstName,
+      lastName,
+      emailAddress,
+      phoneNumber,
+      accountHolder,
+      bankFrom,
+      proofPayment,
+    } = req.body;
+    if (!req.file) {
+      return res.status(404).json({ message: "Image not found" });
+    }
+
+    if (idItem === "" || 
+      duration === "" || 
+      price === "" || 
+      bookingDateStart === "" || 
+      bookingDateEnd === "" || 
+      firstName === "" || 
+      lastName === "" || 
+      emailAddress === "" || 
+      phoneNumber === "" || 
+      accountHolder === "" || 
+      bankFrom === "" || 
+      proofPayment === "") {
+        res.status(404).json({ message: "Lengkapi semua field" });
+      }
+
+      res.status(201).json({ message: "Success Booking"});
   },
 };
