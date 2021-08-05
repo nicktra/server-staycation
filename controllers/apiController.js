@@ -105,33 +105,31 @@ module.exports = {
     const {
       idItem,
       duration,
-      price,
-      bookingDateStart,
-      bookingDateEnd,
+      // price,
+      bookingStartDate,
+      bookingEndDate,
       firstName,
       lastName,
-      emailAddress,
+      email,
       phoneNumber,
       accountHolder,
       bankFrom,
-      proofPayment,
     } = req.body;
     if (!req.file) {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    if (idItem === "" || 
-      duration === "" || 
-      price === "" || 
-      bookingDateStart === "" || 
-      bookingDateEnd === "" || 
-      firstName === "" || 
-      lastName === "" || 
-      emailAddress === "" || 
-      phoneNumber === "" || 
-      accountHolder === "" || 
-      bankFrom === "" || 
-      proofPayment === "") {
+    if (idItem === undefined || 
+      duration === undefined || 
+      // price === undefined || 
+      bookingStartDate === undefined || 
+      bookingEndDate === undefined || 
+      firstName === undefined || 
+      lastName === undefined || 
+      email === undefined || 
+      phoneNumber === undefined || 
+      accountHolder === undefined || 
+      bankFrom === undefined) {
         res.status(404).json({ message: "Lengkapi semua field" });
       }
 
