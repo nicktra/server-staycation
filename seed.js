@@ -120,7 +120,8 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb06') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb07') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb08') }
-        ]
+        ],
+        categoryId: '5e96cbe292b97300fc901111'
       },
       // done
       {
@@ -165,7 +166,8 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb02') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb03') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb04') }
-        ]
+        ],
+        categoryId: '5e96cbe292b97300fc901111'
       },
 
     ]
